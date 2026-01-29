@@ -23,6 +23,11 @@ body {
   margin: 0;
   /* This is to make the body aside from the sidebar */
   margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 #streakButton {
   height: 300px;
@@ -32,4 +37,5 @@ body {
   background-size: cover;
   background-color: rgb(218, 41, 41);
   font-size: 40px;
+  border: 1px solid black;
 }
