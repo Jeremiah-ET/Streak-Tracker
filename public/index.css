@@ -1,0 +1,26 @@
+.SideBarPannel {
+  /* For editing purposes but will change after */
+  /*background-color: black;*/
+  height: 100vh;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.SideBarPannel a {
+  color: white;
+  text-decoration: none;
+  padding: 14px 20px;
+  background-color: gray;
+  border: 2px solid black;
+  font-size: 17px;
+}
+body {
+  margin: 0;
+  /* This is to make the body aside from the sidebar */
+  margin-left: 200px;
+}
