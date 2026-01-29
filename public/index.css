@@ -1,15 +1,15 @@
 .SideBarPannel {
   /* For editing purposes but will change after */
-  /*background-color: black;*/
+  /* background-color: black; */
   height: 100vh;
   width: 200px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  justify-content: center;
+  gap: 10px;
   position: fixed;
   top: 0;
   left: 0;
+  padding-top: 20px;
 }
 .SideBarPannel a {
   color: white;
@@ -23,4 +23,13 @@ body {
   margin: 0;
   /* This is to make the body aside from the sidebar */
   margin-left: 200px;
+}
+#streakButton {
+  height: 300px;
+  width: 300px;
+  border-radius: 150px;
+  background-image: url(1f525.webp);
+  background-size: cover;
+  background-color: rgb(218, 41, 41);
+  font-size: 40px;
 }
