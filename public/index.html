@@ -8,17 +8,21 @@
   </head>
   <body>
     <div class="SideBarPannel">
-      <a href="index.html" id="HomePageLink">Home Page</a>
+      <a href="index.html" id="HomePageLinkActive">Home Page</a>
       <a href="Counter.html" class="streakCounter">Counter</a>
       <a href="Calander.html" class="Calander">Calander</a>
     </div>
-    <div class="main">
+    <div id="main">
       <div class="bottomPannel">
         <a href="index.html" id="HomePageLink">Home Page</a>
         <a href="Counter.html" class="streakCounter">Counter</a>
         <a href="Calander.html" class="Calander">Calander</a>
       </div>
+      <p id="streakText"></p>
       <button id="streakButton">Add to Streak</button>
+      <!-- Put div around these later on -->
+      <button id="removeStreak">Remove Streak</button>
+      <button id="resetStreak">Reset Streak</button>
     </div>
     <script src="index.js"></script>
   </body>

@@ -1,6 +1,5 @@
 .SideBarPannel {
-  /* For editing purposes but will change after */
-  background-color: black;
+  background-color: white;
   height: 100vh;
   width: 300px;
   display: flex;
@@ -11,19 +10,24 @@
   transition: transform .2s ease;
 }
 .SideBarPannel a {
-  color: white;
+  color: gray;
   text-decoration: none;
   padding: 20px 20px;
-  background-color: gray;
-  border: 2px solid black;
+  border: 2px solid rgba(214, 9, 255, 0.363);
+  border-radius: 25px;
   font-size: 17px;
 }
+#HomePageLinkActive {
+  background-color: rgba(234, 74, 255, 0.13);
+}
 .bottomPannel {
-  transition: transform .2s ease;
+  transition: transform .5s ease;
   bottom: 0;
   background-color: white;
   height: 70px;
-  width: calc(100% - 10px);
+  width: 500px;
+  border-radius: 40px;
+  margin-bottom: 30px;
   position: fixed;
   display: flex;
   justify-content: center;
@@ -39,7 +43,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-.main {
+#main {
   /* This is to make the body aside from the sidebar */
   background-color: blanchedalmond;
   margin-left: 300px;
@@ -53,6 +57,7 @@ body {
 #streakButton {
   height: 300px;
   width: 300px;
+  /* The transition is still getting caught with the other and extending to far insde the side bar */
   border-radius: 150px;
   background-image: url(1f525.webp);
   background-size: cover;
@@ -62,12 +67,15 @@ body {
   border: 1px solid black;
   transition: transform .2s ease;
 }
+#streakButton:active {
+  transform: translateY(3px)
+}
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
   .SideBarPannel {
     transform: translateX(-110%);
   }
-  .main {
+  #main {
     margin-left: 0;
   }
   #streakButton {
@@ -75,8 +83,9 @@ body {
   }
 }
 
-@media (min-width: 700px) {
+@media (min-width: 750px) {
   .bottomPannel {
-    transform: translateX(-2000%);
+    transform: translateY(200%);
+    /* Transition down */
   }
 }
