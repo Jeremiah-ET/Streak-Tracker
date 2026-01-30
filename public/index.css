@@ -1,33 +1,54 @@
 .SideBarPannel {
   /* For editing purposes but will change after */
-  /* background-color: black; */
+  background-color: black;
   height: 100vh;
-  width: 200px;
+  width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   position: fixed;
-  top: 0;
-  left: 0;
   padding-top: 20px;
+  transition: transform .2s ease;
 }
 .SideBarPannel a {
   color: white;
   text-decoration: none;
-  padding: 14px 20px;
+  padding: 20px 20px;
   background-color: gray;
   border: 2px solid black;
   font-size: 17px;
 }
+.bottomPannel {
+  transition: transform .2s ease;
+  bottom: 0;
+  background-color: white;
+  height: 70px;
+  width: calc(100% - 10px);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+}
+.bottomPannel a {
+  text-decoration: none;
+
+}
 body {
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.main {
   /* This is to make the body aside from the sidebar */
-  margin-left: 200px;
+  background-color: blanchedalmond;
+  margin-left: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  transition: margin .2s ease;
 }
 #streakButton {
   height: 300px;
@@ -37,5 +58,25 @@ body {
   background-size: cover;
   background-color: rgb(218, 41, 41);
   font-size: 40px;
+  font-weight: bold;
   border: 1px solid black;
+  transition: transform .2s ease;
+}
+
+@media (max-width: 700px) {
+  .SideBarPannel {
+    transform: translateX(-110%);
+  }
+  .main {
+    margin-left: 0;
+  }
+  #streakButton {
+    transform: scale(.9);
+  }
+}
+
+@media (min-width: 700px) {
+  .bottomPannel {
+    transform: translateX(-2000%);
+  }
 }
