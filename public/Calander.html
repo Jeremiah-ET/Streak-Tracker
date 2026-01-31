@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streak Calendar</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Sora:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <aside class="SideBarPannel">
+      <div class="brand">
+        <div class="brandMark">S</div>
+        <div class="brandText">
+          <span>Streak</span>
+          <small>Momentum Tracker</small>
+        </div>
+      </div>
+      <nav class="sideNav">
+        <a href="index.html">Home</a>
+        <a href="Counter.html" class="streakCounter">Counter</a>
+        <a href="Calander.html" class="Calander navActive">Calander</a>
+      </nav>
+      <div class="sideMeta">
+        <p>See each day you checked in.</p>
+      </div>
+    </aside>
+
+    <main id="main">
+      <header class="topBar">
+        <div class="titleBlock">
+          <h1>Calendar view</h1>
+          <p>Spot gaps and keep your daily rhythm.</p>
+        </div>
+        <div class="badge">
+          <span>February</span>
+        </div>
+      </header>
+
+      <section class="calendarGrid" id="calendarGrid">
+        <div class="calendarHeader">Mon</div>
+        <div class="calendarHeader">Tue</div>
+        <div class="calendarHeader">Wed</div>
+        <div class="calendarHeader">Thu</div>
+        <div class="calendarHeader">Fri</div>
+        <div class="calendarHeader">Sat</div>
+        <div class="calendarHeader">Sun</div>
+      </section>
+
+      <section class="bottomRow">
+        <div class="container4">
+          <h3>Longest run</h3>
+          <p>14 days in a row last month.</p>
+        </div>
+        <div class="container4">
+          <h3>Focus days</h3>
+          <p>Weekdays are your strongest pattern.</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottomPannel" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="Counter.html" class="streakCounter">Counter</a>
+      <a href="Calander.html" class="Calander navActive">Calander</a>
+    </nav>
+    <script src="analytics.js"></script>
+  </body>
+</html>

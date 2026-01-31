@@ -1,55 +1,70 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
-const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.json());
 app.use(express.static("public"));
 
-/* =====================
-   DATABASE CONNECTION
-===================== */
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const uri = process.env.MONGOURL;
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch(err => console.log("Database connection error:", err));
+if (!uri) {
+  console.error("MONGOURL is missing. Check your .env file.");
+  process.exit(1);
+}
 
-/* =====================
-   ROUTES
-===================== */
-
-app.get("/", (req, res) => {
-  res.send("Server running with database");
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
 });
 
-/* =====================
-   SERVER START
-===================== */
+let streaksCollection;
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
-// install express,dotenv,mongodb,nodemon
+async function startServer() {
+  // connect once
+  await client.connect();
+  console.log("Connected to MongoDB");
 
-app.post("/streakCounter", async (req, res) => {
-  try {
-    await client.connect();
-    const dbStreaks = client.db("streaksCounter")
-    const streaks = db.collection("streaks");
+  // pick database + collection once
+  const db = client.db("streaksCounter");
+  streaksCollection = db.collection("streaks");
 
-    const result = await streaks.insertOne({
-      streak: req.body.streakNumber
-    })
+  // routes
+  app.get("/", (req, res) => {
+    res.send("Server running with database");
+  });
 
-    console.log(req.body)
+  app.post("/streakCounter", async (req, res) => {
+    try {
+      const { streak } = req.body;
 
-    res.json ({ message: "streak saved"})
-  } catch(err) {
-      console.error(err)
-      res.status(500).json({ error: "server error"})
+      if (typeof streak !== "number") {
+        return res.status(400).json({ error: "streak must be a number" });
+      }
+
+      const result = await streaksCollection.insertOne({
+        streak,
+        createdAt: new Date(),
+      });
+
+      res.json({ message: "streak saved", id: result.insertedId });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "server error" });
     }
-})
+  });
+
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+
+startServer().catch((err) => {
+  console.error("Failed to start:", err);
+  process.exit(1);
+});

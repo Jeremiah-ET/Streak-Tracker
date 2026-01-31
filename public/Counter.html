@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streak Counter</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Sora:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <aside class="SideBarPannel">
+      <div class="brand">
+        <div class="brandMark">S</div>
+        <div class="brandText">
+          <span>Streak</span>
+          <small>Momentum Tracker</small>
+        </div>
+      </div>
+      <nav class="sideNav">
+        <a href="index.html">Home</a>
+        <a href="Counter.html" class="streakCounter navActive">Counter</a>
+        <a href="Calander.html" class="Calander">Calander</a>
+      </nav>
+      <div class="sideMeta">
+        <p>Overview of your progress.</p>
+      </div>
+    </aside>
+
+    <main id="main">
+      <header class="topBar">
+        <div class="titleBlock">
+          <h1>Streak analytics</h1>
+          <p>Track how your consistency builds momentum.</p>
+        </div>
+        <div class="badge">
+          <span>Progress</span>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="streakCard">
+          <div class="streakLabel">Current streak</div>
+          <p class="bigValue" id="currentStreakValue">0 days</p>
+          <div class="streakHint" id="weeklyDelta">0 days logged this week</div>
+        </div>
+        <div class="focusCard">
+          <h2>Best streak</h2>
+          <p class="bigValue" id="bestStreakValue">0 days</p>
+          <p class="subtle" id="bestStreakDate">No data yet</p>
+        </div>
+      </section>
+
+      <section class="statsGrid">
+        <div class="statCard">
+          <span>Total days logged</span>
+          <strong id="totalDaysValue">0</strong>
+        </div>
+        <div class="statCard">
+          <span>Weekly target</span>
+          <strong id="weeklyTargetValue">0 / 7</strong>
+        </div>
+        <div class="statCard">
+          <span>Average streak</span>
+          <strong id="averageStreakValue">0 days</strong>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottomPannel" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="Counter.html" class="streakCounter navActive">Counter</a>
+      <a href="Calander.html" class="Calander">Calander</a>
+    </nav>
+    <script src="analytics.js"></script>
+  </body>
+</html>
