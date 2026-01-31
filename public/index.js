@@ -10,8 +10,26 @@ streakButton.addEventListener("click", (e) => {
   console.log(`Streak Added: ${streakNumber}`)
   streakNumber += 1;
   streakText.textContent = `Your current Streak is: ${streakNumber}`
-  mainContainer.appendChild(streakDeclaration);
-  // need to add limit on how many times when pressed
-  // if (streakDeclaration.value = !0) {}
-  
+  fetch("/streakCounter", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      streak: streakNumber
+    })
+    }) .then(res => res.json())
+    .then(data => console.log("Success:", data))
+    .catch(err => console.error("Error:", err))
+  })
+
+StreakMinusButton.addEventListener("click", (e)=> {
+  streakNumber -= 1;
+  streakText.textContent = `Your current Streak is: ${streakNumber}`
+  if (streakNumber < 0) {
+    streakNumber = 0
+    streakText.textContent = `Your current Streak is: ${streakNumber} | Cant go into negative streak`
+  }
+})
+resetStreak.addEventListener("click", (e)=> {
+  streakNumber = 0;
+  streakText.textContent = `Your current Streak is: ${streakNumber}`
 })
