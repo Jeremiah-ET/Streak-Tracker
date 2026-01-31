@@ -15,6 +15,8 @@
   --radius-sm: 14px;
 }
 
+/* need to learn about this color palate setting */
+
 *,
 *::before,
 *::after {
@@ -295,6 +297,9 @@ body {
   box-shadow: 0 18px 40px var(--glow);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#streakButton:disabled {
+  background-color: gray;
 }
 
 #streakButton:hover {
