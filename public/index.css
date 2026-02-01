@@ -474,6 +474,23 @@ body {
   color: var(--ink);
 }
 
+.container4 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.container4 button{
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+}
+
+.container4 button:disabled {
+  background-color: green;
+  color: white;
+}
+
 @media (max-width: 980px) {
   .hero,
   .bottomRow,

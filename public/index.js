@@ -4,6 +4,9 @@ const streakText = document.getElementById("streakText")
 const StreakMinusButton = document.getElementById("removeStreak")
 const resetStreak = document.getElementById("resetStreak")
 const clearAllButton = document.getElementById("clear")
+const streak7 = document.getElementById("Streak7")
+const streak30 = document.getElementById("Streak30")
+const streak60 = document.getElementById("Streak60")
 
 const storageKey = "streakNumb"
 const historyKey = "streakHistory"
@@ -102,4 +105,23 @@ if (clearAllButton) {
   clearAllButton.addEventListener("click", () => {
     localStorage.clear()
   })
+}
+// functionality not working
+if (streakNumber >= 7) {
+  streak7.disabled = true;
+}
+if (streakNumber < 7) {
+    streak7.disabled = false;
+  }
+if (streakNumber >= 30) {
+  streak30.disabled = true;
+} 
+if (streakNumber < 30) {
+    streak30.disabled = false;
+  }
+if (streakNumber >= 60) {
+  Streak60.disabled = true;
+}
+if (streakNumber < 60) {
+  streak60.disabled = false;
 }
