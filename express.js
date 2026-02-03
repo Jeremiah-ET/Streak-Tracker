@@ -59,6 +59,53 @@ async function startServer() {
     }
   });
 
+  app.post("/api/sync", async (req, res) => {
+    try {
+      const { clientId, streak, history, tasks, lastStreakDay } = req.body || {};
+
+      if (!clientId || typeof clientId !== "string") {
+        return res.status(400).json({ error: "clientId is required" });
+      }
+
+      const payload = {
+        clientId,
+        streak: typeof streak === "number" ? streak : 0,
+        history: Array.isArray(history) ? history : [],
+        tasks: Array.isArray(tasks) ? tasks : [],
+        lastStreakDay: typeof lastStreakDay === "string" ? lastStreakDay : null,
+        updatedAt: new Date(),
+      };
+
+      await streaksCollection.updateOne(
+        { clientId },
+        { $set: payload, $setOnInsert: { createdAt: new Date() } },
+        { upsert: true }
+      );
+
+      res.json({ message: "sync saved" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "server error" });
+    }
+  });
+
+  app.get("/api/sync", async (req, res) => {
+    try {
+      const { clientId } = req.query;
+      if (!clientId) {
+        return res.status(400).json({ error: "clientId is required" });
+      }
+      const doc = await streaksCollection.findOne(
+        { clientId },
+        { projection: { _id: 0, clientId: 1, streak: 1, history: 1, tasks: 1, lastStreakDay: 1, updatedAt: 1 } }
+      );
+      res.json(doc || {});
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "server error" });
+    }
+  });
+
   app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });

@@ -1,5 +1,9 @@
 const streakKey = "streakNumb"
 const historyKey = "streakHistory"
+const tasksKey = "streakTasks"
+const lastStreakKey = "lastStreakDay"
+const clientKey = "streakClientId"
+const syncUpdatedKey = "streakSyncAt"
 
 const getTodayKey = () => {
   const now = new Date()
@@ -16,6 +20,44 @@ const loadHistory = () => {
     return Array.isArray(parsed) ? parsed : []
   } catch {
     return []
+  }
+}
+
+const getClientId = () => {
+  const existing = localStorage.getItem(clientKey)
+  if (existing) return existing
+  const fresh = `client-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`
+  localStorage.setItem(clientKey, fresh)
+  return fresh
+}
+
+const hydrateFromServer = async () => {
+  try {
+    const clientId = getClientId()
+    const response = await fetch(`/api/sync?clientId=${encodeURIComponent(clientId)}`)
+    if (!response.ok) return
+    const data = await response.json()
+    if (!data || !data.clientId) return
+
+    const localSync = Number(localStorage.getItem(syncUpdatedKey)) || 0
+    const serverSync = data.updatedAt ? Date.parse(data.updatedAt) : 0
+    if (serverSync && serverSync <= localSync) return
+
+    if (typeof data.streak === "number") {
+      localStorage.setItem(streakKey, String(data.streak))
+    }
+    if (Array.isArray(data.history)) {
+      localStorage.setItem(historyKey, JSON.stringify(data.history))
+    }
+    if (Array.isArray(data.tasks)) {
+      localStorage.setItem(tasksKey, JSON.stringify(data.tasks))
+    }
+    if (typeof data.lastStreakDay === "string") {
+      localStorage.setItem(lastStreakKey, data.lastStreakDay)
+    }
+    localStorage.setItem(syncUpdatedKey, String(Date.now()))
+  } catch (err) {
+    console.error("Hydrate failed", err)
   }
 }
 
@@ -95,6 +137,7 @@ const buildCalendar = (history) => {
 
   const completedDates = new Set(history.map(entry => entry.date))
   const today = new Date()
+  const todayKey = getTodayKey()
   const year = today.getFullYear()
   const month = today.getMonth()
 
@@ -115,6 +158,9 @@ const buildCalendar = (history) => {
     const chip = document.createElement("div")
     const dateKey = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`
     chip.className = "dayChip"
+    if (dateKey === todayKey) {
+      chip.classList.add("today")
+    }
     if (completedDates.has(dateKey)) {
       chip.classList.add("completed")
     }
@@ -123,7 +169,8 @@ const buildCalendar = (history) => {
   }
 }
 
-const runAnalytics = () => {
+const runAnalytics = async () => {
+  await hydrateFromServer()
   const history = loadHistory()
   if (document.getElementById("currentStreakValue")) {
     updateCounterPage()
@@ -131,4 +178,6 @@ const runAnalytics = () => {
   buildCalendar(history)
 }
 
-document.addEventListener("DOMContentLoaded", runAnalytics)
+document.addEventListener("DOMContentLoaded", () => {
+  runAnalytics()
+})
