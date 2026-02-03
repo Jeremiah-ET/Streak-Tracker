@@ -73,6 +73,16 @@ updateStreakText()
 
 streakButton.addEventListener("click", () => {
   streakNumber += 1
+  
+if (streakNumber >= 7) {
+  streak7.disabled = true;
+} 
+if (streakNumber >= 30) {
+  streak30.disabled = true;
+}
+if (streakNumber >= 60) {
+  streak60.disabled = true;
+}
   upsertHistory(streakHistory, getTodayKey(), streakNumber)
   saveAll()
   updateStreakText()
@@ -85,13 +95,29 @@ streakButton.addEventListener("click", () => {
     }) .then(res => res.json())
     .then(data => console.log("Success:", data))
     .catch(err => console.error("Error:", err))
+
+    getStreak7()
+    getStreak30()
+    getStreak60()
 })
 
 StreakMinusButton.addEventListener("click", () => {
   streakNumber = Math.max(0, streakNumber - 1)
+  if (streakNumber < 7) {
+  streak7.disabled = false;
+} 
+if (streakNumber < 30) {
+  streak30.disabled = false;
+}
+if (streakNumber < 60) {
+  streak60.disabled = false;
+}
   upsertHistory(streakHistory, getTodayKey(), streakNumber)
   saveAll()
   updateStreakText()
+  getStreak7()
+  getStreak30()
+  getStreak60()
 })
 
 resetStreak.addEventListener("click", () => {
@@ -99,6 +125,13 @@ resetStreak.addEventListener("click", () => {
   streakHistory = []
   saveAll()
   updateStreakText()
+  streak7.disabled = false;
+  streak30.disabled = false;
+  streak60.disabled = false;
+
+  getStreak7()
+  getStreak30()
+  getStreak60()
 })
 
 if (clearAllButton) {
@@ -106,22 +139,26 @@ if (clearAllButton) {
     localStorage.clear()
   })
 }
-// functionality not working
-if (streakNumber >= 7) {
-  streak7.disabled = true;
-}
-if (streakNumber < 7) {
-    streak7.disabled = false;
+
+function getStreak7() {
+  if (streakNumber >= 7) {
+    streak7.textContent = "You have reached a streak of 7";
+  } else if (streakNumber < 7) {
+    streak7.textContent ="Streak 7 || Get 7 or higher to reach"
   }
-if (streakNumber >= 30) {
-  streak30.disabled = true;
-} 
-if (streakNumber < 30) {
-    streak30.disabled = false;
+}
+function getStreak30() {
+  if (streakNumber >= 30) {
+    streak30.textContent = "You have reached a streak of 30";
+  } else if (streakNumber < 30) {
+    streak30.textContent ="Streak 30 || Get 30 or higher to reach"
   }
-if (streakNumber >= 60) {
-  Streak60.disabled = true;
 }
-if (streakNumber < 60) {
-  streak60.disabled = false;
+function getStreak60() {
+  if (streakNumber >= 60) {
+    streak60.textContent = "You have reached a streak of 60";
+  } else if (streakNumber < 60) {
+    streak60.textContent ="Streak 60 || Get 60 or higher to reach"
+  }
 }
+

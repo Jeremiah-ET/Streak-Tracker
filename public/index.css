@@ -481,9 +481,11 @@ body {
 }
 
 .container4 button{
-  padding: 10px 20px;
+  padding: 15px 20px;
   border-radius: 6px;
   border: none;
+  font-size: 15px;
+  /* font-family: ; */
 }
 
 .container4 button:disabled {
