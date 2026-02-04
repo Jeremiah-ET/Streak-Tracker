@@ -4,6 +4,7 @@ const streakKey = "streakNumb"
 const lastStreakKey = "lastStreakDay"
 const clientKey = "streakClientId"
 const syncUpdatedKey = "streakSyncAt"
+const habitValueKey = "Habit Value"
 
 const loadTasks = () => {
   try {
@@ -328,8 +329,16 @@ const wireClearCompleted = () => {
   })
 }
 
+const consumePendingHabit = () => {
+  const pending = localStorage.getItem(habitValueKey)
+  if (pending == null) return
+  localStorage.removeItem(habitValueKey)
+  addTask(pending)
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   hydrateFromServer().finally(() => {
+    consumePendingHabit()
     renderTasks()
   })
   wireTaskInput()

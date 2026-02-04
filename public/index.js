@@ -4,9 +4,12 @@ const streakText = document.getElementById("streakText")
 const StreakMinusButton = document.getElementById("removeStreak")
 const resetStreak = document.getElementById("resetStreak")
 const clearAllButton = document.getElementById("clear")
+const habitInput = document.getElementById("habitInput")
+const habitSubmit = document.getElementById("submitTask")
 const streak7 = document.getElementById("Streak7")
 const streak30 = document.getElementById("Streak30")
 const streak60 = document.getElementById("Streak60")
+const habitHeader = document.getElementById("HabitHeader")
 const storageKey = "streakNumb"
 const historyKey = "streakHistory"
 const lastStreakKey = "lastStreakDay"
@@ -254,3 +257,13 @@ function getStreak60() {
     streak60.textContent ="Streak 60 || Get 60 or higher to reach"
   }
 }
+
+habitSubmit.addEventListener("click", (e) => {
+  if (habitInput.value) {
+    const habitValue = habitInput.value.trim()
+  localStorage.setItem("Habit Value", habitValue)
+  window.location.href = "Tasks.html"
+  } else {
+    habitHeader.textContent = "Please Submit A Value"
+  }
+})
