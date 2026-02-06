@@ -1,6 +1,8 @@
 :root {
-  --basicGray: rgb(196, 196, 196);
+  --basicGray: rgb(190, 190, 190);
   --nicewhite: rgb(250, 245, 245);
+  --darkBlack: rgb(34, 33, 33);
+  --body: rgb(220, 227, 241);
 }
 
 .header {
@@ -15,7 +17,7 @@
 
 body{
   padding: 10px;
-  background-color: var(--nicewhite);
+  background-color: var(--body);
 }
 
 .sidebar {
@@ -43,4 +45,101 @@ body{
 
 main {
   margin-left: 200px;
+}
+
+.topRow {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.topRow div {
+  background-color: var(--darkBlack);
+  width: 100%;
+  height: 200px;
+  border-radius: 20px;
+}
+
+.row2, .row4 {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.row2div1, .row4div2 {
+  width: 65%;
+  height: 200px;
+  border-radius: 20px;
+  background-color: var(--darkBlack);
+}
+
+.row2div2, .row4div1 {
+  width: 35%;
+  height: 200px;
+  border-radius: 20px;
+  background-color: var(--darkBlack);
+}
+
+.row3 {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.row3 div {
+  background-color: var(--darkBlack);
+  width: 100%;
+  height: 200px;
+  border-radius: 20px;
+}
+
+.bottomrow div {
+  background-color: var(--darkBlack);
+  height: 200px;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+.bottombar {
+  width: 60%;
+  height: 50px;
+  background-color: var(--nicewhite);
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottombar a {
+  text-decoration: none;
+  color: var(--darkBlack);
+  font-size: 17px;
+}
+
+@media (max-width: 900px) {
+  .div-hide{
+    display: none;
+  }
+  .sidebar {
+    display: none;
+  }
+  main {
+    margin-left: 0;
+  }
+}
+@media (min-width: 900px) {
+  .bottombar {
+    display: none;
+  }
 }
