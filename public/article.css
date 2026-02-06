@@ -1,0 +1,14 @@
+:root {
+  --basicGray: rgb(196, 196, 196);
+}
+
+.header {
+  background-color: var(--basicGray);
+  height: 300px;
+  border-radius: 20px;
+
+}
+
+body{
+  padding: 10px;
+}

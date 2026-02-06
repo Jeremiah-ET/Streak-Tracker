@@ -754,6 +754,11 @@ body {
   padding: 10px 20px;
   border: none;
   border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.bottomFull button:active {
+  transform: translateY(2px);
 }
 .bottomFull h1, p {
   margin-top: 15px;

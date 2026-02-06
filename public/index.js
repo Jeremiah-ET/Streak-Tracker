@@ -10,6 +10,7 @@ const streak7 = document.getElementById("Streak7")
 const streak30 = document.getElementById("Streak30")
 const streak60 = document.getElementById("Streak60")
 const habitHeader = document.getElementById("HabitHeader")
+const articleButton = document.getElementById("articleButton")
 const storageKey = "streakNumb"
 const historyKey = "streakHistory"
 const lastStreakKey = "lastStreakDay"
@@ -266,4 +267,8 @@ habitSubmit.addEventListener("click", (e) => {
   } else {
     habitHeader.textContent = "Please Submit A Value"
   }
+})
+
+articleButton.addEventListener("click", (e)=> {
+  window.location.href = "article.html"
 })
