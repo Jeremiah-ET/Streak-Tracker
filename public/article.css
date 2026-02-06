@@ -1,14 +1,46 @@
 :root {
   --basicGray: rgb(196, 196, 196);
+  --nicewhite: rgb(250, 245, 245);
 }
 
 .header {
   background-color: var(--basicGray);
   height: 300px;
   border-radius: 20px;
+}
 
+.header_div {
+  padding: 20px;
 }
 
 body{
   padding: 10px;
+  background-color: var(--nicewhite);
+}
+
+.sidebar {
+  position: fixed;
+  background-color: var(--basicGray);
+  min-height: 100vh;
+  width: 200px;
+  top: 0;
+  left: 0;
+}
+
+.sidebarlinks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.sidebarlinks a {
+  text-decoration: none;
+  font-size: 17px;
+  color: white;
+}
+
+main {
+  margin-left: 200px;
 }
